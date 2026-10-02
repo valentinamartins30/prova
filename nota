@@ -1,0 +1,59 @@
+Etapa 1: DDL — Criação do Esquema (1,0 Pontos)
+Crie as tabelas do modelo relacional abaixo:
+1. aeronaves:
+○ id: Chave primária auto-incremento.
+○ modelo: Texto obrigatório.
+○ codigo_cauda: Texto de até 10 caracteres, único e obrigatório (ex: 'ABC-123').
+○ capacidade: Inteiro obrigatório (deve ser maior que zero).
+2. pilotos:
+○ id: Chave primária auto-incremento.
+○ nome: Texto obrigatório.
+○ codigo_anac: Texto de 6 caracteres, único e obrigatório.
+○ horas_voo: Inteiro com valor padrão 0 (deve ser maior ou igual a zero).
+3. voos:
+○ id: Chave primária auto-incremento.
+○ aeronave_id: Chave estrangeira referenciando aeronaves(id).
+○ piloto_id: Chave estrangeira referenciando pilotos(id).
+○ numero_voo: Texto obrigatório.
+○ origem: Texto obrigatório.
+○ destino: Texto obrigatório.
+○ data_hora: Data/hora obrigatória com valor padrão atual.
+○ status: Texto (valores permitidos: 'Agendado', 'Em Voo', 'Concluido', 'Cancelado').
+Valor padrão: 'Agendado'.
+4. passageiros:
+○ id: Chave primária auto-incremento.
+○ nome: Texto obrigatório.
+○ cpf: Texto de 11 caracteres, único e obrigatório.
+○ email: Texto único e obrigatório.
+5. passagens:
+○ id: Chave primária auto-incremento.
+○ voo_id: Chave estrangeira referenciando voos(id).
+○ passageiro_id: Chave estrangeira referenciando passageiros(id).
+○ assento: Texto de até 4 caracteres obrigatório (ex: '12A').
+○ classe: Texto (valores permitidos: 'Economica', 'Executiva'). Valor padrão:
+'Economica'.
+○ valor: Valor decimal obrigatório (deve ser maior que zero).
+Etapa 2: DML — Inserção de Dados (1,0 Ponto)
+Escreva o script para popular o banco de dados garantindo a presença mínima de:
+● 5 Aeronaves
+● 5 Pilotos
+● 5 Passageiros
+● 5 Voos (com status variados)
+● 5 Passagens cadastradas (Grave 2 passagens “Executiva” com valor superior à R$ 800,00)
+Etapa 3: DQL — Consultas Avançadas (3 Pontos)
+Construa os comandos SQL para resolver os seguintes relatórios:
+● Q1 (1 ponto): Liste o número do voo, origem, destino, modelo da aeronave e nome do
+piloto para todos os voos que estejam com status 'Agendado' ou 'Em Voo'.
+● Q2 (1 ponto): Exiba o total arrecadado com passagens agrupado por classe ('Economica'
+ou 'Executiva'), mostrando o nome da classe e a soma total dos valores.
+● Q3 (1 ponto): Liste o nome do passageiro, número do voo, assento e valor da passagem
+para todas as passagens vendidas na classe 'Executiva' cujo valor seja superior a R$
+800,00, ordenando do valor mais alto para o mais baixo.
+Etapa 4: Views — Visões de Negócio (3 Pontos)
+Crie as visões solicitadas para facilitar o acesso do painel do aeroporto e da equipe financeira:
+● View 1 — vw_painel_aeroporto:
+Crie uma View que exiba o número do voo, data/hora, origem, destino, modelo da
+aeronave, código da cauda e o status do voo.
+● View 2 — vw_faturamento_por_voo:
+Crie uma View que liste o ID do voo, o número do voo, o destino, a quantidade total de
+passageiros com passagem comprada e a receita total gerada por aquele voo.
